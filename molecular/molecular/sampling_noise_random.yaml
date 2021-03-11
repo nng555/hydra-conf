@@ -1,0 +1,11 @@
+gen:
+  model:
+    date: ~
+    bin: orig
+    seed: 2
+  batch: 8
+  leave_unmasked_prob: 0
+
+data:
+  bin: sampling_${gen.mask_prob}_${gen.random_token_prob}
+

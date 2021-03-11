@@ -1,0 +1,4 @@
+slurm:
+  name:
+    - eval:sys.argv[0][:-3].split('/')[-1]
+    - mimic_bert

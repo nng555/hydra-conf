@@ -1,0 +1,21 @@
+slurm:
+  gres: gpu:8
+
+train:
+  task: masked_lm
+  criterion: masked_lm
+  sample_break_mode: complete
+  tokens_per_sample: 512
+  attention_dropout: 0.1
+  weight_decay: 0.01
+  max_sentences: 16
+  update_freq: 16
+  lr: 0.0005
+  warmup_updates: 30
+  total_num_update: 3100
+  init_token: ~
+  separator_token: ~
+  mask_prob: 0.15
+  best_checkpoint_metric: loss
+  maximize_best_checkpoint_metric: ~
+  max_epoch: 100

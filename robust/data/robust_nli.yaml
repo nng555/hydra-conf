@@ -1,0 +1,29 @@
+data:
+  name: nli
+  task: robust
+  fdset: ???
+  tdset: ???
+
+display:
+  fdset: 
+    - fiction
+    - slate
+    - travel
+    - mednli
+  tdset:
+    - fiction
+    - slate
+    - travel
+    - mednli
+  noise:
+    - ~
+
+eval:
+  model:
+    date: ~
+    data: nli
+  data: nli
+
+train:
+  num_classes: 3
+

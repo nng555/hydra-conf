@@ -1,0 +1,11 @@
+gen:
+  model:
+    date: ~
+    bin: orig
+    seed: 2
+  batch: 8
+  step: true
+
+data:
+  bin: sampling_${gen.mask_prob}_step
+

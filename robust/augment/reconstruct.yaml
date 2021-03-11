@@ -1,0 +1,11 @@
+train:
+  mask_prob: 0.15
+  random_token_prob: 0.1
+  leave_unmasked_prob: 0.1
+  topk: -1
+  augment: reconstruct
+  epoch_mask_rate: ~
+  max_mask_rate: ~
+  recon_model_path: ~
+  recon_model_file: ~
+  recon_model_data: ~

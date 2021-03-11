@@ -1,0 +1,22 @@
+data:
+  bin: orig
+  task: molecular
+  name: logp
+
+preprocess:
+  shard: ~
+
+train:
+  regression_target: True
+  num_classes: 1
+  best_checkpoint_metric: ~
+  maximize_best_checkpoint_metric: false
+
+display:
+  name: 
+    - logp
+
+eval:
+  metrics:
+    - mse
+    - mae

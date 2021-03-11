@@ -1,0 +1,13 @@
+slurm:
+  name:
+    - eval:sys.argv[0][:-3].split('/')[-1]
+    - mimic_bert
+    - dp_low
+
+train:
+  dp: true
+  noise_multiplier: 0.01
+  max_grad_norm: 20.0
+  max_sentences: 2
+  update_freq: 32
+  fp16: false

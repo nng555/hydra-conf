@@ -1,0 +1,146 @@
+defaults:
+  - hydra/launcher: slurm
+
+hydra:
+  run:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S-%N}
+  sweep:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S-%N}
+    subdir: ${hydra.job.num}
+
+venv: chem
+wait: false
+extra: ~
+next_day: ~
+max_running: -1
+max_pending: -1
+
+data:
+  bin: orig
+  num_sents: ~
+
+slurm:
+  cpus_per_task: eval:4*int("${slurm.gres}"[-1])
+  dependency: ~
+  exclude: gpu115
+  gres: gpu:1
+  job_name:
+    - eval:sys.argv[0][:-3].split('/')[-1]
+    - ${data.name}
+    - ${data.bin}
+    - ${gen.shard}
+    - ${train.seed}
+    - ${extra}
+  mem: eval:str(int(20.5*int("${slurm.gres}"[-1])))+'G'
+  nodes: 1
+  ntasks_per_node: 1
+  open_mode: append
+  partition: rtx6000,t4v2,t4v1,p100
+  account: ~
+  qos: normal
+
+train:
+  adam_betas: (0.9, 0.98)
+  adam_eps: 1.0e-06
+  arch: ~
+  best_checkpoint_metric: accuracy
+  clip_norm: 0.0
+  criterion: sentence_prediction
+  ddp_backend: no_c10d
+  dropout: 0.1
+  find_unused_parameters: true
+  word_dropout_prob: ~
+  fp16: true
+  input0_mask: false
+  input1_mask: false
+  keep_interval_updates: 1
+  keep_last_epochs: 1
+  log_interval: 10
+  lr: 1.0e-05
+  lr_scheduler: polynomial_decay
+  max_epoch: 10
+  max_positions: 512
+  max_sentences: ~
+  max_tokens: 4400
+  max_updates: ~
+  maximize_best_checkpoint_metric: true
+  num_classes: ~
+  optimizer: adam
+  ordinal: false
+  regression_target: false
+  required_batch_size_multiple: 1
+  save_interval_updates: ~
+  seed: ~
+  skip_invalid_size_inputs_valid_test: true
+  augment: ~
+  src_temperature: ~
+  tgt_temperature: ~
+  soft_labels: false
+  task: sentence_prediction
+  update_freq: 1
+
+gen:
+  batch: 256
+  depth: 1
+  dset: ${data.bin}
+  in_dset: ${gen.model.bin}
+  label_samples: 1
+  leave_unmasked_prob: 0.1
+  mask_prob: 0.15
+  max_tries: 100
+  num_samples: 4
+  step: false
+  num_shards: 1
+  random_token_prob: 0.1
+  shard: ~
+  topk: -1
+  recon: 
+    date: 2020-10-11
+    data: zinc15
+    name:
+      - launch_train
+      - ${gen.recon.data}
+      - ${gen.recon.bin}
+      - ${gen.recon.seed}
+    bin: orig
+    seed: 1
+  seed: ~
+  model:
+    date: ~
+    name: 
+      - launch_train
+      - ${data.name}
+      - ${gen.model.bin}
+      - ${gen.model.seed}
+      - ${extra}
+    bin: ~
+    seed: ~
+
+eval:
+  split: valid
+  metrics:
+      - accuracy 
+  model: 
+    date: ~
+    name: 
+      - launch_train
+      - ${data.name}
+      - ${data.bin}
+      - ${train.seed}
+      - ${extra}
+    bin: ${data.bin}
+
+display:
+  seed: ~
+  name: ~
+  dir:
+    date: ~
+    name: 
+      - eval_roberta_glue
+      - ~
+      - ${data.bin}
+      - ~
+      - ~
+
+preprocess:
+  shard: ~

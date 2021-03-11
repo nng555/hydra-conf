@@ -1,0 +1,16 @@
+data:
+  bin: books
+
+eval:
+  model:
+    date: ~
+
+display:
+  dir: 
+    date: ~
+
+gen:
+  model:
+    date: 2020-10-01
+    bin: orig
+    seed: 0

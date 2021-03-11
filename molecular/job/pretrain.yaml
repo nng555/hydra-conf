@@ -1,0 +1,20 @@
+slurm:
+  gres: gpu:8
+
+wait: true
+
+train:
+  task: masked_lm
+  criterion: masked_lm
+  total_num_update: 1000000
+  warmup_updates: 60000
+  update_freq: 32
+  max_update: 1000000
+  mask_prob: 0.15
+  leave_unmasked_prob: 0.1
+  random_token_prob: 0.1
+  sample_break_mode: eos
+  leave_unmasked_prob: 0.0
+  random_token_prob: 0.0
+  tokens_per_sample: 512
+  lr: 0.0005

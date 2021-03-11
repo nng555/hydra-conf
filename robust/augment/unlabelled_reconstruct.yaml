@@ -1,0 +1,7 @@
+train:
+  mask_prob: 0.15
+  random_token_prob: 0.1
+  leave_unmasked_prob: 0.1
+  topk: -1
+  unlabelled_augment: reconstruct
+

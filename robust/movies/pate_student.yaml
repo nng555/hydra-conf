@@ -1,0 +1,4 @@
+data:
+  bin: pate_${data.fraction}
+
+

@@ -1,0 +1,3 @@
+data:
+  bin: self_train_${gen.mask_prob}_${gen.recon}_${gen.comp}_${gen.topk}_${gen.round}
+  num_sents: 200000

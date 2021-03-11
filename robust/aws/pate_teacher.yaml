@@ -1,0 +1,8 @@
+data:
+  bin: orig_${data.fraction}
+  num_teachers: ~
+  teacher_idx: ~
+
+train:
+  num_teachers: ${data.num_teachers}
+  teacher_idx: ${data.teacher_idx}

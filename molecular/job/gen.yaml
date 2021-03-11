@@ -1,0 +1,6 @@
+slurm:
+  gres: gpu:1
+  partition: t4v2,t4v1,p100,rtx6000
+
+wait: false
+

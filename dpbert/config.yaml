@@ -1,0 +1,61 @@
+defaults:
+  - hydra/launcher: slurm
+
+slurm:
+  partition: gpu
+  exclude: gpu079
+  qos: normal
+  venv: dpbert
+  gpu: 8
+  cpu: eval:4*${slurm.gpu}
+  mem: eval:str(22*${slurm.gpu})+'G'
+
+data:
+  name: mimic_bert
+
+train:
+
+  # total batch size 256*GPU
+  max_sentences: 8
+  update_freq: 32
+  max_update: 125000
+  max_tokens: 4400
+
+  task: masked_lm
+  arch: roberta_base
+  criterion: masked_lm
+  
+  dropout: 0.1
+  attention_dropout: 0.1
+  weight_decay: 0.01
+
+  # optimizer
+  optimizer: adam
+  adam_betas: "(0.9, 0.98)"
+  adam_eps: 1e-06
+  clip_norm: 0.0
+
+  # dp
+  dp: ~
+  noise_multiplier: ~
+  max_grad_norm: ~
+
+  # lr
+  lr_scheduler: polynomial_decay
+  lr: 0.0005
+  total_num_update: 125000
+  warmup_updates: 10000
+  
+  log_format: simple
+  sample_break_mode: complete
+  ddp_backend: no_c10d
+  log_interval: 1
+  fp16: true
+  keep_last_epochs: 1
+  seed: ~
+
+hydra:
+  run:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}
+  sweep:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}

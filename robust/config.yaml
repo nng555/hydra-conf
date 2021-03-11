@@ -1,0 +1,224 @@
+defaults:
+  - anli@_global_: default
+  - data@_global_: default
+  - aws@_global_: default
+  - clothing@_global_: default
+  - job@_global_: default
+  - mnli@_global_: default
+  - model@_global_: default
+  - movies@_global_: default
+  - nmt@_global_: default
+  - noise@_global_: default
+  - qos@_global_: default
+  - robust@_global_: default
+  - override hydra/launcher: slurm
+
+
+hydra:
+  run:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S-%N}
+  sweep:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S-%N}
+    subdir: ${hydra.job.num}
+
+venv: robust
+wait: false
+extra: ~
+next_day: ~
+max_running: -1
+max_pending: -1
+
+data:
+  bin: orig
+  num_sents: ~
+  teacher_idx: ~
+  num_teachers: ~
+
+slurm:
+  cpus_per_task: eval:4*int("${slurm.gres}"[-1])
+  dependency: ~
+  exclude: gpu080,gpu115,gpu021,gpu060,gpu139,gpu180,gpu061
+  gres: gpu:1
+  job_name:
+    - eval:sys.argv[0][:-3].split('/')[-1]
+    - ${data.fdset}
+    - ${data.bin}
+    - ${data.tdset}
+    - ${gen.shard}
+    - ${train.seed}
+    - ${train.data_seed}
+    - ${train.layer_seed}
+    - ${train.augment}
+    - ${train.mask_prob}
+    - ${eval.mask_prob}
+    - ${train.epoch_mask_rate}
+    - ${train.max_mask_rate}
+    - ${extra}
+  mem: eval:str(20*int("${slurm.gres}"[-1]))+'G'
+  nodes: 1
+  ntasks_per_node: 1
+  open_mode: append
+  partition: rtx6000,t4v2,t4v1
+  account: ~
+  qos: normal
+
+train:
+  restore_file: ~
+  data_seed: ~
+  layer_seed: ~
+  adam_betas: (0.9, 0.98)
+  adam_eps: 1.0e-06
+  augment: ~
+  best_checkpoint_metric: accuracy
+  clip_norm: 0.0
+  criterion: sentence_prediction
+  ddp_backend: no_c10d
+  dropout: 0.1
+  find_unused_parameters: true
+  word_dropout_prob: ~
+  fp16: true
+  init_token: 0
+  input0_mask: false
+  input1_mask: false
+  keep_interval_updates: 1
+  keep_last_epochs: 1
+  keep_original: ~
+  leave_unmasked_prob: 0.0
+  log_interval: 10
+  lr: 1.0e-05
+  lr_scheduler: polynomial_decay
+  mask_prob: ~
+  epoch_mask_rate: ~
+  max_mask_rate: ~
+  recon_model_path: ~
+  recon_model_file: ~
+  recon_model_data: ~
+  max_epoch: 10
+  max_positions: 512
+  max_sentences: ~
+  max_source_positions: 512
+  max_tokens: 4400
+  max_updates: ~
+  maximize_best_checkpoint_metric: true
+  num_classes: ~
+  optimizer: adam
+  ordinal: false
+  random_token_prob: 0.0
+  regression_target: false
+  required_batch_size_multiple: 1
+  save_interval_updates: ~
+  seed: ~
+  separator_token: 2
+  skip_invalid_size_inputs_valid_test: true
+  src_temperature: ~
+  tgt_temperature: ~
+  soft_labels: false
+  task: sentence_prediction
+  update_freq: 1
+  teacher_idx: ${data.teacher_idx}
+  num_teachers: ${data.num_teachers}
+
+eval:
+  inpu0_mask: false
+  input1_mask: false
+  leave_unmasked_prob: ~
+  mask_prob: ~
+  random_token_prob: ~
+  reconstruct: false
+  noisy: false
+  num_samples: 0
+  weighted: false
+  split: valid
+  model: 
+    date: ~
+    name: 
+      - launch_train
+      - ${data.fdset}
+      - ${data.bin}
+      - ${train.seed}
+      - ${train.augment}
+      - ${train.mask_prob}
+      - ${train.epoch_mask_rate}
+      - ${train.max_mask_rate}
+      - ${extra}
+    bin: ${data.bin}
+
+display:
+  props: ~
+  prop_split: ~
+  compare:
+    name: ~
+    task: ~
+    date: ~
+    no_seed: true
+    bin: orig
+  dir:
+    date: ~
+    name: 
+      - eval_roberta_glue
+      - ~
+      - ~
+      - ${data.bin}
+      - ~
+      - ~
+      - ~
+
+gen:
+  overwrite: false
+  gamma: ~ # PATE aggregation noise parameter
+  batch: 6
+  depth: 1
+  dset: ${data.bin}
+  in_dset: ${gen.model.bin}
+  label_samples: 1
+  leave_unmasked_prob: 0.1
+  mask_prob: 0.15
+  max_tries: 1000
+  metropolis: false
+  num_samples: 5
+  num_shards: 8
+  split: train
+  print_prob: false
+  progressive: false
+  random_token_prob: 0.1
+  shard: ~
+  sort: false
+  topk: -1
+  comp: ~
+  comp_file:
+    date: ~
+    rdset: ${data.fdset}
+    rseed: ~
+    bin: unlabelled
+    name:
+      - launch_train
+      - ${gen.comp_file.rdset}
+      - ${gen.comp_file.bin}
+      - ${gen.comp_file.rseed}
+  recon: base
+  recon_file:
+    date: ~
+    rdset: ${data.fdset}
+    rseed: ~
+    bin: unlabelled
+    name:
+      - launch_train
+      - ${gen.recon_file.rdset}
+      - ${gen.recon_file.bin}
+      - ${gen.recon_file.rseed}
+  seed: ~
+  model:
+    date: ~
+    fdset: ${data.fdset}
+    name: 
+      - launch_train
+      - ${gen.model.fdset}
+      - ${gen.model.bin}
+      - ${gen.model.seed}
+      - ${train.mask_prob}
+      - ${train.epoch_mask_rate}
+      - ${train.max_mask_rate}
+      - ${extra}
+    bin: ~
+    seed: ~
+

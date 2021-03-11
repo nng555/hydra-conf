@@ -1,0 +1,3 @@
+data:
+  bin: pate_${data.fraction}_${gen.mask_prob}
+

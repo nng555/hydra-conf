@@ -1,0 +1,7 @@
+data:
+  bin: orig
+  task: molecular
+  name: zinc15
+
+preprocess:
+  shard: ~

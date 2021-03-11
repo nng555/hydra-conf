@@ -1,0 +1,6 @@
+slurm:
+  cpus_per_task: 1
+  gres: ~
+  mem: eval:4*${slurm.cpus_per_task}
+  partition: cpu
+  qos: nopreemption

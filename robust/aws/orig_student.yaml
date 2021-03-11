@@ -1,0 +1,7 @@
+data:
+  bin: orig_${data.fraction}
+  num_sents: 1000
+
+train:
+  warmup_updates: 60
+  max_epoch: 15

@@ -1,0 +1,6 @@
+train:
+  arch: roberta_base
+  attention_dropout: 0.1
+  weight_decay: 0.01
+  max_sentences: 8
+  log_format: simple

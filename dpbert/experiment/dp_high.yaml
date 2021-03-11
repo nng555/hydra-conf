@@ -1,0 +1,11 @@
+slurm:
+  name:
+    - eval:sys.argv[0][:-3].split('/')[-1]
+    - mimic_bert
+    - dp_high
+
+train:
+  dp: true
+  noise_multiplier: 1.0
+  max_grad_norm: 1.0
+

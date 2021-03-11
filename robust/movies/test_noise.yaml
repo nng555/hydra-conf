@@ -1,0 +1,8 @@
+data:
+  bin: test_noise
+
+gen:
+  model:
+    date: 2020-10-02
+    bin: sampling_${gen.mask_prob}_soft
+    seed: 0
