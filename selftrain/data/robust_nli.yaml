@@ -1,0 +1,17 @@
+# @package _group_
+name: nng_dataset
+task: nli
+fdset: ~
+tdset: ~
+
+display:
+  fdset:
+    - fiction
+    - travel
+    - slate
+    - mednli
+  tdset:
+    - fiction
+    - travel
+    - slate
+    - mednli
