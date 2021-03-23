@@ -25,7 +25,7 @@ wait: false
 extra: ~
 next_day: ~
 max_running: -1
-max_pending: -1
+max_pending: 499
 
 eval:
   leave_unmasked_prob: ~
@@ -65,10 +65,11 @@ display:
 
 gen:
   overwrite: false
+  deduplicate: true
   gamma: ~ # PATE aggregation noise parameter
-  batch: 6
+  batch: 8
   depth: 1
-  dset: ${data.bin}
+  dset: ${data.bin.name}
   in_dset: ${gen.model.bin}
   label_samples: 1
   leave_unmasked_prob: 0.1
