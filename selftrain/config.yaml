@@ -25,9 +25,10 @@ wait: false
 extra: ~
 next_day: ~
 max_running: -1
-max_pending: 499
+max_pending: 300
 
 eval:
+  batch: 16
   leave_unmasked_prob: ~
   mask_prob: ~
   random_token_prob: ~
@@ -43,7 +44,7 @@ eval:
     name: 
       - launch_train
       - ${data.fdset}
-      - ${data.bin.name}
+      - ${eval.model.bin}
       - ${train.seed}
       - ${train.augment}
       - ${train.mask_prob}
