@@ -1,6 +1,6 @@
 # When are Pre-trained Transformers Robust?
 
-Make sure to set the environment variable `PROJ=robustness` before running these scripts. All commands are run in the base fairseq directory for the corresponding project.
+Make sure to set the environment variable `export PROJ=robustness` before running these scripts. All commands are run in the base fairseq directory for the corresponding project.
 
 ## Pre-training
 
