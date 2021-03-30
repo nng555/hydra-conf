@@ -25,7 +25,10 @@ wait: false
 extra: ~
 next_day: ~
 max_running: -1
-max_pending: 300
+max_pending: -1
+max_total: 350
+restore: true
+command: ~
 
 eval:
   batch: 16
@@ -53,6 +56,7 @@ eval:
 
 display:
   noise: ~
+  mask_prob: ~
   dir:
     date: ~
     name: 

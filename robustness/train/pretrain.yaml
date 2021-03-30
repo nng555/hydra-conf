@@ -20,7 +20,7 @@ input1_mask: false
 keep_interval_updates: 1
 keep_last_epochs: 1
 layer_seed: ~
-leave_unmasked_prob: 0.0
+leave_unmasked_prob: 0.1
 log_interval: 10
 lr: 0.0005
 lr_scheduler: polynomial_decay
@@ -34,7 +34,7 @@ maximize_best_checkpoint_metric: ~
 num_classes: ${data.bin.num_classes}
 optimizer: adam
 ordinal: false
-random_token_prob: 0.0
+random_token_prob: 0.1
 recon_model_path: ~
 regression_target: false
 required_batch_size_multiple: 1
@@ -52,7 +52,7 @@ st_model_path: ~
 task: masked_lm
 threshold_loss_scale: 1
 tokens_per_sample: 512
-total_num_update: 3100
+total_num_update: 480000
 update_freq: 16
-warmup_updates: 30
+warmup_updates: 10000
 weight_decay: 0.01
