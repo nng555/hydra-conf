@@ -14,6 +14,7 @@ extra: ~
 next_day: ~
 max_running: -1
 max_pending: -1
+max_total: -1
 
 slurm:
   cpus_per_task: eval:4*int("${slurm.gres}"[-1])
@@ -30,4 +31,4 @@ slurm:
   partition: rtx6000,t4v2,t4v1,p100
   account: ~
   qos: normal
-
+  date: ~
