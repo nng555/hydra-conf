@@ -26,7 +26,7 @@ extra: ~
 next_day: ~
 max_running: -1
 max_pending: -1
-max_total: 350
+max_total: 380
 restore: true
 command: ~
 
