@@ -3,6 +3,8 @@ name: aws
 task: sentiment
 fdset: ~
 tdset: ~
+num_classes: 5
+num_sents: 25000
 
 display:
   fdset:

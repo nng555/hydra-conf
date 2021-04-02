@@ -47,6 +47,7 @@ separator_token: 2
 skip_invalid_size_inputs_valid_test: true
 soft_labels: false
 st_model_path: ~
+st_unlabelled_only: ~
 task: sentence_prediction
 threshold_loss_scale: 1
 total_num_update: eval:int((${data.bin.num_sents}/(int("${slurm.gres}"[-1]) * ${train.max_sentences} * ${train.update_freq})) * 11)
