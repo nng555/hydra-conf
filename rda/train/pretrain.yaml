@@ -31,7 +31,6 @@ max_sentences: 16
 max_source_positions: ~
 max_tokens: 4400
 maximize_best_checkpoint_metric: ~
-num_classes: ${data.bin.num_classes}
 optimizer: adam
 ordinal: false
 random_token_prob: 0.1

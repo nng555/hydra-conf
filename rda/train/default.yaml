@@ -30,7 +30,7 @@ max_sentences: 8
 max_source_positions: 512
 max_tokens: 4400
 maximize_best_checkpoint_metric: true
-num_classes: ${data.bin.num_classes}
+num_classes: ${data.num_classes}
 optimizer: adam
 ordinal: false
 random_token_prob: 0.0
@@ -41,7 +41,7 @@ reset_dataloader: ~
 reset_meters: ~
 reset_optimizer: ~
 restore_file: ~
-save_interval_updates: 1000
+save_interval_updates: 400
 seed: ~
 separator_token: 2
 skip_invalid_size_inputs_valid_test: true
@@ -50,9 +50,9 @@ st_model_path: ~
 st_unlabelled_only: ~
 task: sentence_prediction
 threshold_loss_scale: 1
-total_num_update: eval:int((${data.bin.num_sents}/(int("${slurm.gres}"[-1]) * ${train.max_sentences} * ${train.update_freq})) * 11)
+total_num_update: eval:int((${data.num_sents}/(int("${slurm.gres}"[-1]) * ${train.max_sentences} * ${train.update_freq})) * 11)
 unlabelled_data: ~
 unlabelled_augment: ~
 update_freq: 1
-warmup_updates: eval:int((${data.bin.num_sents}/(int("${slurm.gres}"[-1]) * ${train.max_sentences} * ${train.update_freq})) * 0.6)
+warmup_updates: eval:int((${data.num_sents}/(int("${slurm.gres}"[-1]) * ${train.max_sentences} * ${train.update_freq})) * 0.6)
 

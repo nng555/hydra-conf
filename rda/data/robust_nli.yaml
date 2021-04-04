@@ -3,6 +3,8 @@ name: nli
 task: nng_dataset
 fdset: ~
 tdset: ~
+num_sents: ~
+num_classes: 3
 
 display:
   fdset:
