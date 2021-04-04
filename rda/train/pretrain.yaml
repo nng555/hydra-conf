@@ -42,7 +42,7 @@ reset_meters: ~
 reset_optimizer: ~
 restore_file: ~
 sample_break_mode: complete
-save_interval_updates: 500
+save_interval_updates: 400
 seed: ~
 separator_token: ~
 skip_invalid_size_inputs_valid_test: true
