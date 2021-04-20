@@ -49,7 +49,7 @@ skip_invalid_size_inputs_valid_test: true
 soft_labels: false
 st_model_path: ~
 task: masked_lm
-threshold_loss_scale: 1
+#threshold_loss_scale: 1
 tokens_per_sample: 512
 total_num_update: 480000
 update_freq: 16

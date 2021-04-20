@@ -69,6 +69,7 @@ display:
       - ~
 
 gen:
+  noisy: true
   overwrite: false
   deduplicate: true
   gamma: ~ # PATE aggregation noise parameter

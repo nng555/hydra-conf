@@ -41,7 +41,7 @@ reset_dataloader: ~
 reset_meters: ~
 reset_optimizer: ~
 restore_file: ~
-save_interval_updates: 1000
+save_interval_updates: 1500
 seed: ~
 separator_token: 2
 skip_invalid_size_inputs_valid_test: true
