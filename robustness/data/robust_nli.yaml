@@ -8,12 +8,12 @@ num_sents: 10000
 
 display:
   fdset:
-    - fiction
-    - travel
-    - slate
+    - snli
+    - mnli
+    - anli
     - mednli
   tdset:
-    - fiction
-    - travel
-    - slate
+    - snli
+    - mnli
+    - anli
     - mednli
