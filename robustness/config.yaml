@@ -89,6 +89,7 @@ gen:
   random_token_prob: 0.1
   shard: ~
   sort: false
+  temperature: 0.7
   topk: -1
   comp: ~
   comp_file:

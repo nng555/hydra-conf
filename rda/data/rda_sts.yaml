@@ -1,0 +1,20 @@
+# @package _group_
+name: rda_sts
+task: sts
+fdset: ~
+tdset: ~
+num_classes: 1
+num_sents: 1500
+regression_target: true
+
+display:
+  fdset:
+    - msrpar
+    - msrvid
+    - headlines
+    - images
+  tdset:
+    - msrpar
+    - msrvid
+    - headlines
+    - images

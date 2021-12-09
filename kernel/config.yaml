@@ -1,0 +1,41 @@
+defaults:
+  - slurm: default
+  - hydra/launcher: slurm
+
+hydra:
+  run:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S-%N}
+  sweep:
+    dir: /h/nng/hydra/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S-%N}
+    subdir: ${hydra.job.num}
+
+extra: ~
+wait: false
+max_running: -1
+max_pending: -1
+max_total: 380
+
+
+influence:
+  outdir: /h/nng/projects/kernel/out/
+  seed: 42
+  gpu: 0
+  dataset: CUFAR19
+  num_classes: 10
+  test_sample_num: 1
+  test_start_index: 0
+  recursion_depth: 5000
+  r_averaging: 1
+  scale: ~
+  damp: ~
+  calc_method: img_wise
+  log_filename: ~
+
+train:
+  data: MNIST
+  num_epochs: 100
+  batch_size: 500
+  lr: 1.0e-2
+  adam_betas: (0.9, 0.98)
+  adam_eps: 1.0e-6
+  seed: 42

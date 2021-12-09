@@ -5,19 +5,6 @@ exclude: gpu080,gpu115,gpu021,gpu060,gpu139,gpu180,gpu061,gpu172,gpu147,gpu088,g
 gres: gpu:1
 job_name:
   - eval:sys.argv[0][:-3].split('/')[-1]
-  - ${data.fdset}
-  - ${data.bin.name}
-  - ${data.tdset}
-  - ${train.seed}
-  - ${train.data_seed}
-  - ${train.layer_seed}
-  - ${train.augment}
-  - ${train.mask_prob}
-  - ${eval.mask_prob}
-  - ${eval.model.epoch}
-  - ${gen.shard}
-  - ${gen.sharpen}
-  - ${gen.extra}
   - ${extra}
 mem: eval:str(20*int("${slurm.gres}"[-1]))+'G'
 nodes: 1
@@ -26,4 +13,3 @@ open_mode: append
 partition: rtx6000,t4v2,t4v1,p100
 account: ~
 qos: normal
-

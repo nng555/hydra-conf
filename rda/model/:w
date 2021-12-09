@@ -5,7 +5,7 @@ lr_scheduler: polynomial_decay
 max_positions: 512
 dropout: 0.1
 attention_dropout: 0.1
+max_positions: 512
 update_freq: 1
 pooler_dropout: ~
 layer_seed: ~
-total_num_update: eval:int((${data.num_sents}/(int("${slurm.gres}"[-1]) * ${train.max_sentences} * ${train.update_freq})) * 11)

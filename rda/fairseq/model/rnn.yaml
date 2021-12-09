@@ -1,0 +1,9 @@
+_name: lstm_classifier
+lr: 1e-04
+lr_scheduler: inverse_sqrt
+update_freq: 32
+encoder_layers: 1
+dropout: 0.3
+pooler_dropout: 0.1
+max_positions: 512
+total_num_update: ~

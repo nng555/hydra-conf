@@ -1,0 +1,2 @@
+# @package _group_
+name: noisy_${gen.recon_file.rdset}_${gen.mask_prob}_${gen.increment}_${gen.max_mask_prob}_${gen.depth}

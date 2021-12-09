@@ -5,27 +5,28 @@ fdset: ~
 tdset: ~
 num_classes: 5
 num_sents: 25000
+regression_target: false
 
 display:
   fdset:
-    - books
+    #- books
     - clothing
     - home
     - kindle
-    - movies
-    - pets
-    - sports
+    #- movies
+    #- pets
+    #- sports
     - tech
-    - tools
-    - toys
+    #- tools
+    #- toys
   tdset:
-    - books
+    #- books
     - clothing
     - home
     - kindle
-    - movies
-    - pets
-    - sports
+    #- movies
+    #- pets
+    #- sports
     - tech
-    - tools
-    - toys
+    #- tools
+    #- toys

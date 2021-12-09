@@ -1,13 +1,17 @@
-# Reverse Domain Adaptation
+# Semi-Supervised Consistency Propagation
 
 This folder contains configuration files for replicating the experiments in the Reverse Domain Adaptation paper. In addition to this repo, you will need to install [fairseq](https://github.com/nng555/fairseq-ssmba) as well as the 1.0_branch version of [hydra](https://github.com/nng555/hydra/tree/origin/1.0_branch). Note that the linked repos are custom forks with modified code. All repos should be cloned into the home directory. By default slurm will output into the path
 `~/slurm/${date}/${job)name}`. 
 
 Before running any commands, make sure to set the environment variable `export PROJ=rda`. All commands are run in the base fairseq directory for the corresponding project.
 
-## Test-time RDA
+Refer to the top-level README for a description of how these three repos work together.
 
-During test-time RDA,  
+## Test-time Consistency Propagation
+
+During test-time consistency propagation we evaluate models by averaging augmentations. We first generate the sentences with the following script
+
+`python3 gen_neighborhood.py data/bin=noisy_list gen.num_samples=10 gen.deduplicate="False" gen.recon="base" gen.in_dset="orig" data.fdset="books" gen.mask_prob="0.05" gen.increment="0.05" gen.max_mask_prob="0.75" gen.shard="3" gen.num_shards="4" gen.split="valid" gen.overwrite="True" gen.recon_file.rdset="base" slurm.date="2021-04-20"
 
 ## Fine-tuning
 

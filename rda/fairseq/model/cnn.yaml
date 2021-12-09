@@ -1,0 +1,7 @@
+# @package _group_
+_name: fconv_classifier
+lr: 1e-03
+lr_scheduler: inverse_sqrt
+update_freq: 32
+dropout: 0.2
+pooler_dropout: 0.2

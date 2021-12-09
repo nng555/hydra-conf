@@ -10,6 +10,7 @@ defaults:
   - data: aws
   - data/bin: orig
   - slurm: default
+  - model: roberta
   - train: default
   - hydra/launcher: slurm
 
@@ -29,6 +30,7 @@ max_pending: -1
 max_total: 380
 restore: true
 command: ~
+actual_bsize: eval:(str(int("${slurm.gres}".split(':')[-1])*int(${train.max_sentences})*int(${train.update_freq})))
 
 eval:
   batch: 16
@@ -53,8 +55,10 @@ eval:
       - ${train.mask_prob}
       - ${extra}
     bin: ${data.bin.name}
+    epoch: ~
 
 display:
+  seed: ~
   noise: ~
   mask_prob: ~
   dir:
@@ -67,20 +71,34 @@ display:
       - ~
       - ~
       - ~
+      - ${gen.sharpen}
 
 gen:
-  noisy: true
+  dump_orig: false
+  noisy: false
   overwrite: false
   deduplicate: true
   gamma: ~ # PATE aggregation noise parameter
   batch: 8
   depth: 1
   dset: ${data.bin.name}
+  extra: ~
   in_dset: ${gen.model.bin}
   label_samples: 1
   leave_unmasked_prob: 0.1
   mask_prob: 0.15
-  max_tries: 1000
+  increment: ~
+  weighted: false
+  mask_prob_sigma: ~
+  mask_prob_alpha: ~
+  mask_prob_beta: ~
+  max_mask_prob: ~
+  threshold: ~
+  temperature: 0.7
+  sharpen: ~
+  vote: false
+  mask_whole_words: false
+  max_tries: 100
   metropolis: false
   num_samples: 5
   num_shards: 8
@@ -122,10 +140,8 @@ gen:
       - ${gen.model.fdset}
       - ${gen.model.bin}
       - ${gen.model.seed}
-      - ${train.mask_prob}
-      - ${train.epoch_mask_rate}
-      - ${train.max_mask_rate}
       - ${extra}
     bin: ~
     seed: ~
+    epoch: ~
 
