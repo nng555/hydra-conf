@@ -1,7 +1,7 @@
 # @package _group_
 date: ~
 cpus_per_task: eval:4*int("${slurm.gres}"[-1])
-exclude: gpu080,gpu115,gpu021,gpu060,gpu139,gpu180,gpu061,gpu172,gpu147,gpu088,gpu131,gpu173,gpu157,gpu111,gpu024,gpu026,gpu025,gpu171,gpu083,gpu020,gpu100
+exclude: gpu080,gpu115,gpu021,gpu060,gpu139,gpu180,gpu061,gpu172,gpu147,gpu088,gpu131,gpu173,gpu157,gpu111,gpu024,gpu026,gpu025,gpu171,gpu083,gpu020,gpu100,gpu136,gpu121,gpu138
 gres: gpu:1
 job_name:
   - eval:sys.argv[0][:-3].split('/')[-1]

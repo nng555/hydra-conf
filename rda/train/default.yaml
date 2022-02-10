@@ -19,7 +19,7 @@ init_token: 0
 input0_mask: false
 input1_mask: false
 keep_interval_updates: 1
-keep_last_epochs: 10
+keep_last_epochs: 1
 layer_seed: ~
 leave_unmasked_prob: 0.0
 log_interval: 10
@@ -49,6 +49,7 @@ reset_optimizer: ~
 restore_file: ~
 save_interval_updates: 1500
 seed: ~
+separate_inputs: False
 separator_token: 2
 sigmoid_target: False
 skip_invalid_size_inputs_valid_test: true

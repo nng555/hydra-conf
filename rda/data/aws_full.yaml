@@ -1,0 +1,32 @@
+# @package _group_
+name: aws
+task: sentiment
+fdset: ~
+tdset: ~
+num_classes: 5
+num_sents: 25000
+regression_target: false
+
+display:
+  fdset:
+    - books
+    - clothing
+    - home
+    - kindle
+    - movies
+    - pets
+    - sports
+    - tech
+    - tools
+    - toys
+  tdset:
+    - books
+    - clothing
+    - home
+    - kindle
+    - movies
+    - pets
+    - sports
+    - tech
+    - tools
+    - toys

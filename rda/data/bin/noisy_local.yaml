@@ -1,0 +1,3 @@
+# @package _group_
+name: noisy_local_${gen.mask_prob}_${gen.depth}
+

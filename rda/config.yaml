@@ -31,6 +31,7 @@ max_total: 380
 restore: true
 command: ~
 actual_bsize: eval:(str(int("${slurm.gres}".split(':')[-1])*int(${train.max_sentences})*int(${train.update_freq})))
+verbose: false
 
 eval:
   batch: 16
@@ -58,16 +59,18 @@ eval:
     epoch: ~
 
 display:
+  epsilon: 0.02
   seed: ~
   noise: ~
   mask_prob: ~
   dir:
+    bin: ${data.bin.name}
     date: ~
     name: 
       - eval_roberta_glue
       - ~
       - ~
-      - ${data.bin.name}
+      - ${display.dir.bin}
       - ~
       - ~
       - ~
@@ -123,7 +126,7 @@ gen:
   recon: base
   recon_file:
     date: ~
-    rdset: ${data.fdset}
+    rdset: base
     rseed: ~
     bin: unlabelled
     name:

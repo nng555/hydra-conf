@@ -1,3 +1,3 @@
 # @package _group_
-name: noisy_random_${gen.recon_file.rdset}_${gen.mask_prob_sigma}_${gen.depth}
+name: noisy_random_${gen.mask_prob}
 
